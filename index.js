@@ -1,3 +1,4 @@
+const sanitizeHtml = require('sanitize-html');
 const express = require('express');
 const app = express();
 
@@ -8,11 +9,11 @@ const students = [
     {id:2, name:"Peter Aliaga", enroll:false}
 ];
 
-app.get('/',(req,res)=>{
+app.get('/',(_req,res)=>{
     res.send('Node Js api');
 });
 
-app.get('/api/students',(req,res)=>{
+app.get('/api/students',(_req,res)=>{
     res.send(students);
 });
 
@@ -34,7 +35,7 @@ app.post('/api/students',(req,res)=>{
     };
 
     students.push(student);
-    res.send(student);
+    res.send(sanitizeHtml(student));
 });
 
 app.delete('/api/students/:id',(req,res)=>{
