@@ -1,6 +1,8 @@
 const sanitizeHtml = require('sanitize-html');
 const express = require('express');
 const app = express();
+//Recomendación de seguridad
+app.disable("x-powered-by");
 
 app.use(express.json());
 
