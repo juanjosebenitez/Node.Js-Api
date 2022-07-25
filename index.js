@@ -29,13 +29,13 @@ app.post('/api/students',(req,res)=>{
 
     const student = {
         id: students.length + 1,
-        name: req.body.name,
-        age:  parseInt(req.body.age),
-        enroll: (req.body.enroll==="true")
+        name: sanitizeHtml(req.body.name),
+        age:  parseInt(sanitizeHtml(req.body.age)),
+        enroll: (sanitizeHtml(req.body.enroll)==="true")
     };
 
     students.push(student);
-    res.send(sanitizeHtml(student));
+    res.send(student);
 });
 
 app.delete('/api/students/:id',(req,res)=>{
